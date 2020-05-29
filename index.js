@@ -33,6 +33,8 @@ app.use(express. static(path.join(__dirname, 'public')));
 //Route paths go here
 
 
+//Route setting
+
 //404 erro handler
 app.use((req, res, next) => {
     next(createError(404));
@@ -49,9 +51,14 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
+//View static pages
+app.get('/' , (req,res) => {
+    res.render('home');
+})
+
 //Connecting to port
 const port = process.env.port || 8000;
-server.listen(port, () => {
+app.listen(port, () => {
     console.log("Listening to port ",port,' at http://localhost:',port);
 });
 
